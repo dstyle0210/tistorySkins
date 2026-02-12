@@ -24,15 +24,33 @@ const htmlToTattertools = (_htmlRaw:string) => {
 }
 
 /**
+ * build 할때 이쁘게(?) 정리하기
+ * @param _htmlRaw 원본 HTML 문자열
+ * @returns 치환된 HTML 문자열
+ */
+const prettyHtml = (_htmlRaw:string) => {
+    return _htmlRaw;
+}
+
+/**
  * 비동기 HTML 컴파일러
  * 파일을 읽어 치환 로직을 거친 후 dist 폴더에 저장합니다.
  * @param _path 파일 경로
  */
 const asyncHtmlCompiler = async (_path:string) => {
-    const HtmlRaw = htmlToTattertools( htmlToEjs( await fs.promises.readFile(_path, { encoding: 'utf-8' }) ) );
-    const DistPath = _path.replace("\src","\dist");
-    await fs.promises.mkdir(path.dirname(DistPath), { recursive: true });
-    await fs.promises.writeFile(DistPath, HtmlRaw, { encoding: 'utf-8' });
+    const HtmlRaw = htmlToEjs( await fs.promises.readFile(_path, { encoding: 'utf-8' }) );
+
+    // 스킨 HTML
+    const skinHtml = prettyHtml(HtmlRaw);
+    const skinPath = _path.replace("\src","\dist");
+
+    // 미리보기 HTML
+    const previewHtml = prettyHtml( htmlToTattertools( HtmlRaw ) );
+    const previewPath = skinPath.replace("skin.html","preview.html");
+
+    await fs.promises.mkdir(path.dirname(skinPath), { recursive: true }); // 폴더 생성
+    await fs.promises.writeFile(skinPath, skinHtml, { encoding: 'utf-8' }); // 스킨저장
+    await fs.promises.writeFile(previewPath, previewHtml, { encoding: 'utf-8' }); // 미리보기 저장
 }
 
 /**
@@ -61,4 +79,6 @@ const GulpHtmlWatcher = (_globs):Promise<void> => {
         });
     });
 };
+
+
 export {GulpHtmlCompiler,GulpHtmlWatcher};

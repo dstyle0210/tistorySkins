@@ -5,8 +5,10 @@
 - express 서버 만들기 (대상 dist)
 - html to ejs 만들기
 - html to 테터툴즈 만들기
+- 테터툴즈 치환자 전용 데이터셋 만들기
 - sass 컴파일 만들기
 - ts to js 만들기 (번들 해야 하나?)
+
 
 
 ## 사용법
