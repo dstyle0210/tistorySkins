@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "ES5",                          /* 사용할 ECMAScript 버전 설정 */
+    "module": "commonjs",                     /* 모듈 시스템 설정 */
+    "moduleResolution": "node",
+
+    /* 엄격한 타입 체크 */
+    "esModuleInterop": true,                  /* CommonJS와 ES 모듈 간의 상호 운용성 허용 */
+    "skipLibCheck": true,                     /* 선언 파일(.d.ts)의 타입 체크 건너뛰기 */
+  },
+  "exclude": ["node_modules"]                 /* 컴파일에서 제외할 파일 범위 */
+}

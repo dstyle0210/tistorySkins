@@ -1,0 +1,26 @@
+{
+  "name": "mabongpapa-tistory-skins",
+  "version": "0.0.1",
+  "description": "취미생활 : 티스토리 스킨 만들기",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/gulp": "^4.0.18",
+    "@types/node": "^25.2.3",
+    "express": "^5.2.1",
+    "glob": "^13.0.2",
+    "gulp": "^5.0.1",
+    "gulp-cli": "^3.1.0",
+    "gulp-sass": "^6.0.1",
+    "sass": "^1.97.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
