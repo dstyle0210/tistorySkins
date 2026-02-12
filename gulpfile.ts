@@ -1,7 +1,10 @@
 import {task} from "gulp";
 
-import GulpHtmlCompiler from "./gulp_modules/tasks/htmlCompiler";
+
+
+import {GulpHtmlCompiler,GulpHtmlWatcher} from "./gulp_modules/tasks/htmlCompiler";
 task("test",async (done)=>{
     await GulpHtmlCompiler("./src/skins/**/*.html");
+    await GulpHtmlWatcher("./src/skins/**/*.html");
     done();
 });

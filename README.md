@@ -1,6 +1,14 @@
 # mabongpapa-tistory-skins
 - 티스토리 스킨을 만들기 위한 프로젝트입니다.
 
+## 할일
+- express 서버 만들기 (대상 dist)
+- html to ejs 만들기
+- html to 테터툴즈 만들기
+- sass 컴파일 만들기
+- ts to js 만들기 (번들 해야 하나?)
+
+
 ## 사용법
 
 1. **의존성 설치**
