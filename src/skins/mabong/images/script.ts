@@ -1,3 +1,3 @@
 function tete(){
-    alert("tete");
+    alert("tete"); 
 }
