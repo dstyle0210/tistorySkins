@@ -3,9 +3,12 @@ import {task} from "gulp";
 
 
 import {GulpHtmlCompiler,GulpHtmlWatcher} from "./gulp_modules/tasks/htmlCompiler";
-task("test",async (done)=>{
+import {GulpSassCompiler,GulpSassWatcher} from "./gulp_modules/tasks/sassCompiler";
+task("dev",async (done)=>{
     await GulpHtmlCompiler("./src/skins/**/skin.html");
     await GulpHtmlWatcher("./src/skins/**/skin.html");
+    await GulpSassCompiler("./src/skins/**/style.scss");
+    await GulpSassWatcher("./src/skins/**/*.scss");
     done();
 });
 
