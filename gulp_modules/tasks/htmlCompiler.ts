@@ -89,7 +89,7 @@ const htmlToTattertools = (_htmlRaw:string) => {
                                 .replace(/\[##_cover_item_title_##\]/g, `커버 아이템 제목 ${i}`)
                                 .replace(/\[##_cover_item_summary_##\]/g, `커버 아이템 요약 ${i}`)
                                 .replace(/\[##_cover_item_url_##\]/g, '#')
-                                .replace(/\[##_cover_item_thumbnail_##\]/g, `https://via.placeholder.com/300x200?text=Item${i}`);
+                                .replace(/\[##_cover_item_thumbnail_##\]/g, `https://localhost:3000/dummy/300x200?text=Item${i}`);
                         });
                         
                         // s_cover_item_article_info 처리 (글인 경우)
@@ -103,12 +103,12 @@ const htmlToTattertools = (_htmlRaw:string) => {
                                 .replace(/\[##_cover_item_date_##\]/g, '2024.01.01 12:00')
                                 .replace(/\[##_cover_item_simple_date_##\]/g, '2024.01.01')
                                 .replace(/\[##_cover_item_comment_count_##\]/g, '0')
-                                .replace(/\[##_cover_item_thumbnail_##\]/g, `https://via.placeholder.com/300x200?text=Post${i}`);
+                                .replace(/\[##_cover_item_thumbnail_##\]/g, `https://localhost:3000/dummy/300x200?text=Post${i}`);
                         });
                         
                         // s_cover_item_thumbnail 처리 (이미지가 있는 경우)
                         processedItem = processedItem.replace(/<s_cover_item_thumbnail>([\s\S]*?)<\/s_cover_item_thumbnail>/g, function(match8, thumbnailContent) {
-                            return thumbnailContent.replace(/\[##_cover_item_thumbnail_##\]/g, `https://via.placeholder.com/300x200?text=Thumb${i}`);
+                            return thumbnailContent.replace(/\[##_cover_item_thumbnail_##\]/g, `https://localhost:3000/dummy/300x200?text=Thumb${i}`);
                         });
                         
                         // 기본 치환자 처리 (태그 밖에 있는 경우)
@@ -121,7 +121,7 @@ const htmlToTattertools = (_htmlRaw:string) => {
                             .replace(/\[##_cover_item_date_##\]/g, '2024.01.01 12:00')
                             .replace(/\[##_cover_item_simple_date_##\]/g, '2024.01.01')
                             .replace(/\[##_cover_item_comment_count_##\]/g, '0')
-                            .replace(/\[##_cover_item_thumbnail_##\]/g, `https://via.placeholder.com/300x200?text=Thumb${i}`);
+                            .replace(/\[##_cover_item_thumbnail_##\]/g, `https://localhost:3000/dummy/300x200?text=Thumb${i}`);
                         
                         sampleItems.push(processedItem);
                     }
@@ -166,8 +166,8 @@ const htmlToTattertools = (_htmlRaw:string) => {
     html = html.replace(/\[##_article_rep_category_##\]/g, '카테고리');
     html = html.replace(/\[##_article_rep_author_##\]/g, '작성자');
     html = html.replace(/\[##_article_rep_date_##\]/g, '2024.01.01');
-    html = html.replace(/\[##_article_rep_thumbnail_url_##\]/g, 'https://via.placeholder.com/300x200');
-    html = html.replace(/\[##_article_rep_thumbnail_raw_url_##\]/g, 'https://via.placeholder.com/300x200');
+    html = html.replace(/\[##_article_rep_thumbnail_url_##\]/g, 'https://localhost:3000/dummy/300x200');
+    html = html.replace(/\[##_article_rep_thumbnail_raw_url_##\]/g, 'https://localhost:3000/dummy/300x200');
     html = html.replace(/\[##_article_password_##\]/g, 'password');
     html = html.replace(/\[##_article_dissolve_##\]/g, 'return false;');
 
@@ -185,12 +185,12 @@ const htmlToTattertools = (_htmlRaw:string) => {
     // 관련 글 치환
     html = html.replace(/\[##_article_related_rep_link_##\]/g, '#');
     html = html.replace(/\[##_article_related_rep_title_##\]/g, '관련 글 제목');
-    html = html.replace(/\[##_article_related_rep_thumbnail_link_##\]/g, 'https://via.placeholder.com/300x200');
+    html = html.replace(/\[##_article_related_rep_thumbnail_link_##\]/g, 'https://localhost:3000/dummy/300x200');
     html = html.replace(/<s_article_related_rep>([\s\S]*?)<\/s_article_related_rep>/g, function(match) {
         return match
             .replace(/\[##_article_related_rep_link_##\]/g, '#')
             .replace(/\[##_article_related_rep_title_##\]/g, '관련 글 제목')
-            .replace(/\[##_article_related_rep_thumbnail_link_##\]/g, 'https://via.placeholder.com/300x200');
+            .replace(/\[##_article_related_rep_thumbnail_link_##\]/g, 'https://localhost:3000/dummy/300x200');
     });
     html = html.replace(/<s_article_related_rep_thumbnail>([\s\S]*?)<\/s_article_related_rep_thumbnail>/g, '$1');
 
@@ -275,8 +275,9 @@ const asyncHtmlCompiler = async (_path:string) => {
     const skinPath = _path.replace("\src","\dist");
 
     // 미리보기 HTML
-    const previewHtml = prettyHtml( htmlToTattertools( HtmlRaw ) );
-    const previewPath = skinPath.replace("skin.html","preview.html");
+    let previewHtml = prettyHtml( htmlToTattertools( HtmlRaw ) );
+    previewHtml = previewHtml.replace(/src=\"\/\/i1\.daumcdn\.net\/thumb\/C([0-9x]{7}).+\"/g, "src=\"https://localhost:3000/dummy/$1\"");
+    const previewPath = skinPath.replace("skin.html","preview.html"); 
 
     await fs.promises.mkdir(path.dirname(skinPath), { recursive: true }); // 폴더 생성
     await fs.promises.writeFile(skinPath, skinHtml, { encoding: 'utf-8' }); // 스킨저장

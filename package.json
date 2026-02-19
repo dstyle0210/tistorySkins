@@ -15,7 +15,9 @@
     "@types/gulp": "^4.0.18",
     "@types/gulp-sass": "^6.0.0",
     "@types/gulp-typescript": "^0.0.33",
+    "@types/jquery": "^3.5.33",
     "@types/node": "^25.2.3",
+    "canvas": "^3.2.1",
     "express": "^5.2.1",
     "glob": "^13.0.2",
     "gulp": "^5.0.1",
@@ -23,6 +25,7 @@
     "gulp-sass": "^6.0.1",
     "gulp-typescript": "^6.0.0-alpha.1",
     "sass": "^1.97.3",
+    "selfsigned": "^5.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }

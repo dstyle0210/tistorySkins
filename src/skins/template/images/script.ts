@@ -1,3 +1,5 @@
+/// <reference path="./jquery-masonry.d.ts" />
+
 (function($) {
 
 	function gnb(){
@@ -41,7 +43,8 @@
 			var $this = $(this),
 				$sliderItem = $(this).find("li"),
 				itemLength = $sliderItem.length,
-				num = 0;
+				num = 0,
+				touchstartX: number, touchstartY: number, touchendX: number, touchendY: number, touchoffsetX: number, touchoffsetY: number;
 
 			if ( itemLength > 1 ){
 				$this.prepend('<button type="button" class="prev">이전</button><button type="button" class="next">다음</button>');
@@ -79,12 +82,12 @@
 					touchstartY = touch.clientY;
 				});
 
-				$this.on("touchend", function(){
-					if( event.touches.length == 0 ){
-						var touch = event.changedTouches[event.changedTouches.length - 1];
-						touchendX = touch.clientX,
-						touchendY = touch.clientY,
-						touchoffsetX = touchendX - touchstartX,
+				$this.on("touchend", function(e){
+					if( e.touches.length == 0 ){
+						var touch = e.changedTouches[e.changedTouches.length - 1];
+						touchendX = touch.clientX;
+						touchendY = touch.clientY;
+						touchoffsetX = touchendX - touchstartX;
 						touchoffsetY = touchendY - touchstartY;
 
 						if ( Math.abs(touchoffsetX) > 10 && Math.abs(touchoffsetY) <= 100 ){
