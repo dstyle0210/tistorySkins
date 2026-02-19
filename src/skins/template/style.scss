@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+@forward "./scss/search";
 /*
  *
  * CSS CONTENTS:
@@ -236,74 +236,11 @@ hr {
   left: 0;
 }
 
-#header .search {
-  position: absolute;
-  top: 20px;
-  right: 19px;
-  width: 0;
-  padding-right: 40px;
-}
 
-#header .search input {
-  display: none;
-  width: 100%;
-  height: 40px;
-  padding: 0 10px;
-  font-size: 1em;
-  line-height: 40px;
-  color: #000;
-  border: 0;
-  box-sizing: border-box;
-  background-color: transparent;
-}
 
-#header .search button {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  width: 40px;
-  height: 40px;
-  background: url(./images/ico_package.png) no-repeat 0 0;
-  text-indent: -999em;
-  outline: none;
-}
 
-#header .search:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 20;
-  width: 40px;
-  height: 40px;
-  background: url(./images/ico_package.png) no-repeat 0 0;
-  text-indent: -999em;
-  cursor: pointer;
-}
 
-#header .search:hover:before {
-  background-color: #ebebeb;
-}
 
-#header .search.on {
-  width: 322px;
-  border-bottom: 1px solid #000;
-}
-
-#header .search.on input {
-  display: block;
-  outline: none;
-}
-
-#header .search.on button {
-  display: block;
-}
-
-#header .search.on:before {
-  display: none;
-}
 
 #gnb {
   overflow: auto;
@@ -394,7 +331,7 @@ hr {
   color: #9b9b9b;
 }
 
-#footer .admin {
+#footer .admin { 
   color: #666;
 }
 
@@ -1982,7 +1919,7 @@ hr {
 }
 
 .color-chocolate .social-link a,
-.color-chocolate #header .search button,
+.color-chocolate #header .search button, 
 .color-chocolate #header .search:before,
 .color-chocolate .cover-thumbnail-list ul li .thum:before,
 .color-chocolate .cover-gallery ul li a:before,
@@ -2001,7 +1938,7 @@ hr {
   border-color: #4e2e28;
 }
 
-/* Retina Display */
+/* Retina Display
 @media only screen and (-webkit-min-device-pixel-ratio:1.5) {
 
   #header .search button,
@@ -2026,6 +1963,7 @@ hr {
     background-size: 200px auto;
   }
 }
+ */
 
 /* Media Screen - Tablet */
 @media screen and (max-width:1023px) {
@@ -3484,8 +3422,16 @@ hr[data-ke-style='style8'],
   word-break: break-all;
 }
 
-
-// 검색 아이콘으로 보임
-.screen_out{
-  outline:2px solid red;
+// sr-only
+.sr-only,
+.screen_out {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }

@@ -277,7 +277,9 @@ const asyncHtmlCompiler = async (_path:string) => {
     // 미리보기 HTML
     let previewHtml = prettyHtml( htmlToTattertools( HtmlRaw ) );
     previewHtml = previewHtml.replace(/src=\"\/\/i1\.daumcdn\.net\/thumb\/C([0-9x]{7}).+\"/g, "src=\"https://localhost:3000/dummy/$1\"");
-    const previewPath = skinPath.replace("skin.html","preview.html"); 
+    const previewPath = skinPath.replace("skin.html","preview.html");
+
+    console.log(skinPath);
 
     await fs.promises.mkdir(path.dirname(skinPath), { recursive: true }); // 폴더 생성
     await fs.promises.writeFile(skinPath, skinHtml, { encoding: 'utf-8' }); // 스킨저장

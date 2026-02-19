@@ -20,6 +20,7 @@ const Sass = gulpSass(nodeSass);
  */
 const asyncSassCompiler = (_path:string):Promise<void> => {
     return new Promise((resolve,reject)=>{
+        console.log('_path : '+_path);
         src(_path,{base:"./src"})
         .pipe(Sass())
         .pipe(dest("./dist"))
@@ -49,8 +50,12 @@ const GulpSassCompiler = async (_globs):Promise<void> => {
 const GulpSassWatcher = (_globs):Promise<void> => {
     return new Promise((resolve,reject)=>{
         watch(_globs,{usePolling:true}).on("change",async (_path)=>{
-            await asyncSassCompiler(_path);
-            console.log(`[${timeStamp()}] [GulpSassWatcher] ${_path}`);
+            const scssFileName = path.basename(_path);
+            const isStyleScss = scssFileName === 'style.scss'; // 스타일 SCSS 인지 여부
+            const scssPath = (isStyleScss) ? _path : path.join( path.resolve( path.dirname(_path) , '..'), 'style.scss');
+
+            await asyncSassCompiler(scssPath);
+            console.log(`[${timeStamp()}] [GulpSassWatcher] ${scssPath}`);
         }).on("ready",async () => {
             console.log(`[${timeStamp()}] [GulpSassWatcher] 준비완료`);
             resolve();

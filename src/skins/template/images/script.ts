@@ -76,8 +76,8 @@
 					$(".cover-slider .paging button").eq(num).addClass("current").siblings().removeClass("current");
 				}
 
-				$this.on("touchstart", function(){
-					var touch = event.touches[0];
+				$this.on("touchstart", function(e: JQuery.TouchEventBase){
+					var touch = e.originalEvent.touches[0];
 					touchstartX = touch.clientX,
 					touchstartY = touch.clientY;
 				});

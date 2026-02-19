@@ -11,7 +11,7 @@
 	<title>[##_page_title_##]</title>
 	<link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]" />
 	<link rel="shortcut icon" href="[##_blog_link_##]favicon.ico" />
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xpressengine/xeicon@2.3.3/xeicon.min.css">
   <link rel="stylesheet" href="./style.css" >
   <script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script>
 
@@ -45,12 +45,10 @@
         </div>
         <div class="search">
           <s_search>
-            <div data-submit="[##_search_onclick_submit_##]">
-              <label for="[##_search_name_##]" class="screen_out">블로그 내 검색</label>
-              <input id="[##_search_name_##]" type="text" name="[##_search_name_##]" value="[##_search_text_##]"
-                placeholder="검색내용을 입력하세요." onkeypress="if (event.keyCode == 13) { var el=this.closest('[data-submit]'); if(el) eval(el.getAttribute('data-submit')); }">
-              <button type="submit" onclick="var el=this.closest('[data-submit]'); if(el) eval(el.getAttribute('data-submit'));">검색</button>
-            </div>
+            <label for="[##_search_name_##]"><span class="screen_out">블로그 내 검색</span></label>
+            <input id="[##_search_name_##]" type="text" name="[##_search_name_##]" value="[##_search_text_##]"
+              placeholder="검색내용을 입력하세요." onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }">
+            <button type="submit" onclick="[##_search_onclick_submit_##]"><span class="screen_out">검색</span></button>
           </s_search>
         </div>
       </header>
